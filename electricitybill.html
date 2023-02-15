@@ -1,0 +1,147 @@
+<html>
+
+<head>
+    <title>Document</title>
+
+    <script>
+
+        var tb, discount, net;
+        function doadd(chkRef, txtRef) {
+            if (chkRef.checked == true)
+                txtRef.disabled = false;
+            else
+                txtRef.disabled = true;
+
+        }
+        var tb, discount, net;
+        function dobill() {
+            var ubill = document.getElementById("units").value*5;
+            document.getElementById("ub").value=ubill;
+
+            var acBill = document.querySelector("#ua").value*100;
+            document.getElementById("ab").value=acBill;
+
+            var coolerBill = document.querySelector("#uc").value*50;
+            document.getElementById("cb").value=coolerBill;
+
+            var fanBill = document.querySelector("#uf").value*20;
+            document.getElementById("fb").value=fanBill;
+
+
+
+            tb = acBill+fanBill+coolerBill+ubill;
+            document.getElementById("tb").value=tb;
+        }
+        function dodis(com,resi) {
+            
+            if (com.checked == true)
+                discount = tb * 10 / 100;
+            else
+                discount = tb * 20 / 100;
+
+            document.getElementById("dis").value = discount;
+
+
+
+        }
+
+        function donet(){
+            var total= document.getElementById("tb").value;
+            var discount= document.getElementById("dis").value;
+            
+            var net= total - discount ;
+            document.querySelector("#T").value=net;
+    
+        }
+
+
+    </script>
+
+
+</head>
+
+<body>
+
+    <center>
+
+        <font size="6" color="green">ELECTRICITY BILL</font> <BR>
+        <table width="400px" height="600px" bgcolor="beige" cellspacing="10" cellpadding="10">
+            <tr>
+                <td colspan="3" align="center">
+                    Units consumed <input type="text" id="units">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="checkbox" id="ac" onclick="doadd(this,ua);"> AC <br>
+                    <input type="text" id="ua" disabled value="0">
+                </td>
+
+                <td>
+                    <input type="checkbox" id="Cooler" onclick="doadd(this,uc);"> COOLER<br>
+                    <input type="text" id="uc" disabled value="0">
+                </td>
+
+                <td>
+                    <input type="checkbox" id="fan" onclick="doadd(this,uf);"> FAN <br>
+                    <input type="text" id="uf" disabled value="0">
+                </td>
+
+            </tr>
+
+            <tr>
+                <td colspan="3" align="center">
+                    <input type="radio" name="X" id="com" value="10"> Commercial(10%)
+                    <input type="radio" name="X" id="resi" value="20"> Residental(20%)
+                </td>
+            </tr>
+
+            <tr>
+                <td align="center"> <input type="button" value="Bill" onclick="dobill();"> </td>
+                <td align="center"><input type="button" value="Discount"  onclick="dodis(com,resi);"></td>
+                <td align="center"><input type="button" value="Net" onclick="donet( dis,tb);"></td>
+            </tr>
+
+            <tr>
+                <td>
+                    Ac Bill <br>
+                    <input type="text" id="ab" readonly>
+                </td>
+
+                <td>
+                    Cooler Bill <br>
+                    <input type="text" id="cb" readonly>
+                </td>
+
+                <td>
+                    Fan Bill <br>
+                    <input type="text" id="fb" readonly>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Units Bill <br>
+                    <input type="text" id="ub" readonly>
+                </td>
+
+                <td colspan="2">
+                    Total Bill <br>
+                    <input type="text" id="tb" readonly>
+                </td>
+            </tr>
+
+            <tr>
+                <td> Discount <input type="text" id="dis" readonly></td>
+                <td colspan="2">Total(=Bill-Discount): <input type="text" id="T" readonly></td>
+            </tr>
+
+
+
+        </table>
+    </center>
+
+</body>
+
+</html>
